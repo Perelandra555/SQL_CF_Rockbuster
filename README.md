@@ -1,5 +1,10 @@
 # SQL_CF_Rockbuster
  Learning project for SQL. CarrerFoundry Data Analyst course.
+
+
+#### Presentation of findings was made with [Prezi](https://prezi.com/view/b9vzOxLKwcfuLy4YcsFC/)
+#### Some visualization in [Tableau Public](https://public.tableau.com/views/3_10_map/Sheet1?:language=en-US&:display_count=n&:origin=viz_share_link)
+
 ## Introduction
 Rockbuster Stealth LLC is a movie rental company that used to have stores around the
 world. Facing stiff competition from streaming services such as Netflix and Amazon Prime,
