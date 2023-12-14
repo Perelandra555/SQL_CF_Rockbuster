@@ -1,0 +1,77 @@
+SELECT MIN(rental_rate) AS min_rent,
+       MAX(rental_rate) AS max_rent,
+       AVG(rental_rate) AS avg_rent,
+       COUNT(rental_rate) AS count_rent_values,
+       COUNT(*) AS count_rows
+FROM film;
+
+
+SELECT MIN(rental_duration) AS min_rent_dur,
+       MAX(rental_duration) AS max_rent_dur,
+       AVG(rental_duration) AS avg_rent_dur,
+       COUNT(rental_duration) AS count_rent_dur,
+       COUNT(*) AS count_rows
+FROM film;
+
+
+SELECT MIN(length) AS min_length,
+       MAX(length) AS max_length,
+       AVG(length) AS avg_length,
+       COUNT(length) AS count_length,
+       COUNT(*) AS count_rows
+FROM film;
+
+
+SELECT MIN(replacement_cost) AS min_replacement_cost,
+       MAX(replacement_cost) AS max_replacement_cost,
+       AVG(replacement_cost) AS avg_replacement_cost,
+       COUNT(replacement_cost) AS count_replacement_cost,
+       COUNT(*) AS count_rows
+FROM film;
+
+
+SELECT D.country,
+       COUNT(A.customer_id) AS customer_count
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+GROUP BY D.country
+ORDER BY customer_count DESC
+LIMIT 10;
+
+
+SELECT C.city,
+       COUNT(A.customer_id) AS customer_count
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+GROUP BY C.city
+ORDER BY customer_count DESC
+LIMIT 10;
+
+
+SELECT 
+    A.customer_id AS "Customer ID",
+    A.first_name AS "First Name",
+    A.last_name AS "Last Name",
+    D.country AS "Country",
+    C.city AS "City",
+    SUM(E.amount) AS "Total Amount Paid"
+FROM 
+    customer A
+INNER JOIN 
+    address B ON A.address_id = B.address_id
+INNER JOIN 
+    city C ON B.city_id = C.city_id
+INNER JOIN 
+    country D ON C.country_id = D.country_id
+INNER JOIN 
+    payment E ON A.customer_id = E.customer_id
+WHERE 
+    C.city IN ('London', 'Aurora', 'Tokat', 'Mukateve', 'Pontianak', 'Gatineau', 'Molodetno', 'Saint-Denis', 'Yingkou', 'Atlixco')
+GROUP BY 
+    A.customer_id, A.first_name, A.last_name, D.country, C.city
+ORDER BY 
+    SUM(E.amount) DESC
+LIMIT 5;
